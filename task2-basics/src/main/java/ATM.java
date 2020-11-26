@@ -6,10 +6,10 @@ import java.io.FileNotFoundException;
 public class ATM {
     private static int balance = 1000;
 
-    public static void main(String... args){
+    public static void main(String... args) {
 
 
-        Scanner scanner=new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
         int i;
         do {
@@ -33,22 +33,14 @@ public class ATM {
 
                         if (potwierdzenie == 1) {
                             System.out.println("Drukuje potwierdzenie. Saldo wynosi:" + balance);
-                                                    }
-                        else {
-                            System.out.println("Nie drukuje potwierdzenia");
                         }
-
                     } else {
                         System.out.println("Brak srodkow na koncie");
                     }
-
                     break;
-
-
                 }
                 case 2: {
                     System.out.println("Saldo wynosi:" + balance);
-
                     break;
                 }
                 case 3: {
@@ -68,38 +60,29 @@ public class ATM {
 
                         if (potwierdzenie == 1) {
                             System.out.println("Drukuje potwierdzenie. Saldo wynosi:" + balance);
-                        } else {
-                            System.out.println("Nie drukuje potwierdzenia");
                         }
-                    } else {
+                        else {
                         System.out.println("Brak wystarczjacych srodkow na koncie. Twoje saldo wynosi" + balance);
                     }
                     break;
-
                 }
-
                 case 4: {
                     System.out.println("Dziekujemy za skorzystanie z naszych uslug. Zapraszamy ponownie");
                     break;
                 }
-                default:
-                    {
-                        System.out.println("Niepoprawna wartosc. Prosze wybrac opcje 1-4");
-                       break;
-                     }
-
-
+                default: {
+                    System.out.println("Niepoprawna wartosc. Prosze wybrac opcje 1-4");
+                    break;
                 }
             }
-        while (i!=4);
-        //System.out.println("Dziekujemy za skorzystanie z naszych uslug. Zapraszamy ponownie");
+        }
+        while (i != 4);
         return;
 
     }
 
     public void printBalance() {
-        System.out.println("Saldo wynosi:"+balance);
-
+        System.out.println("Saldo wynosi:" + balance);
 
     }
 }
