@@ -7,35 +7,32 @@ public class ATM {
     private static int balance = 1000;
 
     public static void main(String... args) {
-
-
         Scanner scanner = new Scanner(System.in);
-
         int i;
+
         do {
             System.out.println("Prosze, wybierz co chcesz zrobic:" +
-                    "\n1- Wyplata 50zl" +
-                    "\n2- Sprawdzenie salda konta" +
-                    "\n3- Wyplata gotowki" +
-                    "\n4- Zakoncz");
-
+                    "\t1- Wyplata 50zl" +
+                    "\t2- Sprawdzenie salda konta" +
+                    "\t3- Wyplata gotowki" +
+                    "\t4- Zakoncz");
             i = scanner.nextInt();
 
             switch (i) {
                 case 1: {
                     if (balance >= 50) {
-                        balance = balance - 50;
-
                         int potwierdzenie;
-
-                        System.out.println("Czy chcesz wydrukowac potwierdzenie? \ntak - wcisnij 1, \nnie - wcisnij dowolny inny klawisz");
+                        System.out.println("Czy chcesz wydrukowac potwierdzenie? \ttak - wcisnij 1, \tnie - wcisnij dowolny inny klawisz");
                         potwierdzenie = scanner.nextInt();
+
+                        System.out.println("Wyplacam pieniadze 50 PLN");
+                        balance = balance - 50;
 
                         if (potwierdzenie == 1) {
                             System.out.println("Drukuje potwierdzenie. Saldo wynosi:" + balance);
                         }
                     } else {
-                        System.out.println("Brak srodkow na koncie");
+                        System.out.println("Brak wystarczajacych srodkow na koncie. Twoje saldo wynosi: " + balance);
                     }
                     break;
                 }
@@ -47,22 +44,21 @@ public class ATM {
                     int wyplata;
 
                     System.out.println("Jaka kwote chcesz wyplacic?");
-
                     wyplata = scanner.nextInt();
 
                     if (wyplata <= balance) {
-                        balance = balance - wyplata;
-
                         int potwierdzenie;
-
-                        System.out.println("Czy chcesz wydrukowac potwierdzenie? \ntak - wcisnij 1, \nnie - wcisnij dowolny inny klawisz");
+                        System.out.println("Czy chcesz wydrukowac potwierdzenie? \ttak - wcisnij 1, \tnie - wcisnij dowolny inny klawisz");
                         potwierdzenie = scanner.nextInt();
+
+                        System.out.println("Wyplacam pieniadze " + wyplata + " PLN");
+                        balance = balance - wyplata;
 
                         if (potwierdzenie == 1) {
                             System.out.println("Drukuje potwierdzenie. Saldo wynosi:" + balance);
                         }
-                        else {
-                        System.out.println("Brak wystarczjacych srodkow na koncie. Twoje saldo wynosi" + balance);
+                    } else {
+                        System.out.println("Brak wystarczajacych srodkow na koncie. Twoje saldo wynosi: " + balance);
                     }
                     break;
                 }
@@ -77,8 +73,6 @@ public class ATM {
             }
         }
         while (i != 4);
-        return;
-
     }
 
     public void printBalance() {
