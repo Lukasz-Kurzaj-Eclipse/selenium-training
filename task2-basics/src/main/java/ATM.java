@@ -11,13 +11,7 @@ public class ATM {
         int i;
 
         do {
-            //1
-            System.out.println("Prosze, wybierz co chcesz zrobic:" +
-                    "\t1- Wyplata 50zl" +
-                    "\t2- Sprawdzenie salda konta" +
-                    "\t3- Wyplata gotowki" +
-                    "\t4- Zakoncz");
-            i = scanner.nextInt();
+            i = getMenuSelectionItem(scanner);
 
             switch (i) {
                 case 1: {
@@ -25,16 +19,13 @@ public class ATM {
                         boolean confirmationNeeded = getConfirmationNeededInput(scanner);
 
                         //2
-                        System.out.println("Wyplacam pieniadze 50 PLN");
-                        balance = balance - 50;
+                        payOut50PLN();
 
                         if (confirmationNeeded) {
-                            //3
-                            System.out.println("Drukuje potwierdzenie. Saldo wynosi:" + balance);
+                            printConfirmation();
                         }
                     } else {
-                        //4
-                        System.out.println("Brak wystarczajacych srodkow na koncie. Twoje saldo wynosi: " + balance);
+                        insufficientFunds();
                     }
                     break;
                 }
@@ -43,11 +34,7 @@ public class ATM {
                     break;
                 }
                 case 3: {
-                    int wyplata;
-
-                    //5
-                    System.out.println("Jaka kwote chcesz wyplacic?");
-                    wyplata = scanner.nextInt();
+                    int wyplata = howMuchMoneyToPayout(scanner);
 
                     if (wyplata <= balance) {
                         boolean confirmationNeeded = getConfirmationNeededInput(scanner);
@@ -56,10 +43,10 @@ public class ATM {
                         balance = balance - wyplata;
 
                         if (confirmationNeeded) {
-                            System.out.println("Drukuje potwierdzenie. Saldo wynosi:" + balance);
+                            printConfirmation();
                         }
                     } else {
-                        System.out.println("Brak wystarczajacych srodkow na koncie. Twoje saldo wynosi: " + balance);
+                        insufficientFunds();
                     }
                     break;
                 }
@@ -80,12 +67,41 @@ public class ATM {
         System.out.println("Saldo wynosi:" + balance);
     }
 
-    public static boolean getConfirmationNeededInput(Scanner scanner){
+    public static boolean getConfirmationNeededInput(Scanner scanner) {
         System.out.println("Czy chcesz wydrukowac potwierdzenie? \ttak - wcisnij 1, \tnie - wcisnij dowolny inny klawisz");
         return scanner.nextInt() == 1;
     }
 
-    public static void printExitMessage(){
+    public static void printExitMessage() {
         System.out.println("Dziekujemy za skorzystanie z naszych uslug. Zapraszamy ponownie");
     }
+
+    public static int getMenuSelectionItem(Scanner scanner) {
+        System.out.println("Prosze, wybierz co chcesz zrobic:" +
+                "\t1- Wyplata 50zl" +
+                "\t2- Sprawdzenie salda konta" +
+                "\t3- Wyplata gotowki" +
+                "\t4- Zakoncz");
+        return scanner.nextInt();
+    }
+
+    public static void payOut50PLN() {
+        System.out.println("Wyplacam pieniadze 50 PLN");
+        balance = balance - 50;
+    }
+
+    public static void printConfirmation() {
+        System.out.println("Drukuje potwierdzenie. Saldo wynosi:" + balance);
+    }
+
+    public static void insufficientFunds() {
+        System.out.println("Brak wystarczajacych srodkow na koncie. Twoje saldo wynosi: " + balance);
+    }
+
+    public static int howMuchMoneyToPayout(Scanner scanner) {
+        System.out.println("Jaka kwote chcesz wyplacic?");
+        return scanner.nextInt();
+    }
+
 }
+
