@@ -67,7 +67,7 @@ public class Rectangle {
         this.diagonal = Math.sqrt(this.length * this.length + this.width * this.width);
     }
 
-    void calculateProperties(){
+    void calculateProperties() {
         this.calculateCircuit();
         this.calculateField();
         this.calculateDiagonal();
@@ -86,15 +86,28 @@ public class Rectangle {
     }
 
     public static void main(String... args) {
-        double length = getLengthValue();
-        double width = getWidthValue();
-        Rectangle rectangle = new Rectangle(length, width);
-        rectangle.printCircuit();
-        rectangle.printField();
-        rectangle.printDiagonal();
-        return;
+        int menu;
+        do {
+            menu = welcomeMenu();
+            switch (menu) {
+                case 1: {
+                    rectangleCalculations();
+                    break;
 
+                }
+                case 2: {
+                    printGoodBye();
+                    break;
+                }
+                default: {
+                    printIncorrectInputFromMenu();
+                    break;
+                }
+            }
+        }
+        while (menu != 2);
     }
+
 
     public static double getLengthValue() {
         System.out.println("Please put the length of the rectangle");
@@ -105,4 +118,28 @@ public class Rectangle {
         System.out.println("Please put the width of the rectangle");
         return scanner.nextDouble();
     }
+
+    public static int welcomeMenu() {
+        System.out.println("What want to do? \n1-Add rectangle, \n2-Finish the program");
+        return scanner.nextInt();
+    }
+
+    public static void printGoodBye() {
+        System.out.println("Thank you and good bye");
+
+    }
+
+    public static void printIncorrectInputFromMenu() {
+        System.out.println("Please select numer 1 or 2");
+    }
+    public static void rectangleCalculations (){
+        double length = getLengthValue();
+        double width = getWidthValue();
+        Rectangle rectangle = new Rectangle(length, width);
+        rectangle.printCircuit();
+        rectangle.printField();
+        rectangle.printDiagonal();
+        return;
+    }
+
 }
